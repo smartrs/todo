@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+/**
+ *  TODO Service
+ */
 @Service
 public class TodoService {
 
@@ -16,22 +19,42 @@ public class TodoService {
   private TodoRepository todoRepository;
 
 
-
+  /**
+   * TODO List 조회
+   * @param pageable
+   * @return
+   */
   public Object selectTodoList(Pageable pageable) {
 
     return new Response(RestStatus.SUCCESS, null, todoRepository.findAll(pageable));
   }
 
+  /**
+   * ID를 이용하여 TODO 조회
+   * @param id
+   * @return
+   */
   public Object selectTodoById(int id) {
 
     return new Response(RestStatus.SUCCESS, null, todoRepository.findById(id));
   }
 
+  /**
+   * TODO 생성
+   * @param todo
+   * @return
+   */
   public Object createTodo(Todo todo) {
 
     return new Response(RestStatus.SUCCESS, null, todoRepository.save(todo));
   }
 
+  /**
+   * TODO 변경
+   * @param id
+   * @param todo
+   * @return
+   */
   public Object updateTodo(int id, Todo todo) {
 
     if (id != todo.getId()) {
@@ -41,9 +64,13 @@ public class TodoService {
     return new Response(RestStatus.SUCCESS, null, todoRepository.save(todo));
   }
 
+  /**
+   * TODO 완료처리
+   * @param id
+   * @return
+   */
   public Object updateTodoCompleted(int id) {
 
-    //Select 해서 List 조
     List<String> notCompleted = todoRepository.selectTodoRefNotCompleted(id);
 
     if (notCompleted.size() > 0) {

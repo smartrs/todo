@@ -8,6 +8,9 @@ import kr.todolist.entity.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ *  TODO Refer Service
+ */
 @Service
 public class TodoReferService {
 
@@ -17,10 +20,21 @@ public class TodoReferService {
   @Autowired
   private TodoReferRepository todoReferRepository;
 
+  /**
+   * TODO의 ID를 이용하여 TODO Refer List 조회
+   * @param todoId
+   * @return
+   */
   public Object selectTodoReferList(int todoId) {
     return new Response(RestStatus.SUCCESS, null, todoReferRepository.findByTodoId(todoId));
   }
 
+  /**
+   * TODO Refer 생성
+   * @param todoId
+   * @param todoRefer
+   * @return
+   */
   public Object insertTodoRefer(int todoId, TodoRefer todoRefer) {
     if (todoRepository.existsById(todoRefer.getTodoRefId())) {
       todoRefer.setTodo(todoRepository.findById(todoId));
