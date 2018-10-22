@@ -4,7 +4,6 @@ import kr.todolist.controller.TodoController;
 import kr.todolist.controller.TodoReferController;
 import kr.todolist.entity.Todo;
 import kr.todolist.entity.TodoRefer;
-import kr.todolist.service.TodoService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
